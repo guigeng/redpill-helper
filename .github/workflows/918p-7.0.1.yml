@@ -46,6 +46,6 @@ jobs:
           ./redpill_tool_chain.sh build apollolake-7.0.1-42214
           ./redpill_tool_chain.sh auto apollolake-7.0.1-42214
           ls -l
-          mkdir firmware
-          mv images/*.img firmware/
-          ./transfer wet firmware/
+          sudo mkdir firmware
+          sudo mv images/*.img firmware/
+          sudo ./transfer wet firmware/
