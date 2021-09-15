@@ -19,7 +19,7 @@ env:
   DS918P_SN: ${{ secrets.DS918P_SN }}
   DS918P_MAC: ${{ secrets.DS918P_MAC }}
   DS111: ${{ secrets.DS111 }}
-  DSppp: ${{ env.DS918P_MAC }}
+  DSppp: ${{ ds-env.DS918P_MAC }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
