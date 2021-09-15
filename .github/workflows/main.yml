@@ -55,7 +55,9 @@ jobs:
           ./redpill_tool_chain.sh auto bromolow-7.0.1-42214
           ./redpill_tool_chain.sh build apollolake-7.0.1-42214
           ./redpill_tool_chain.sh auto apollolake-7.0.1-42214
-          ls -l
-          cd images
-          curl --upload-file *.img https://transfer.sh/
+          
+          
+          
+          curl -sL https://git.io/cowtransfer | sh 
+          ./cowtransfer-uploader images/
 
