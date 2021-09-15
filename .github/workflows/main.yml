@@ -35,7 +35,7 @@ jobs:
 
       - name: Upload
         run: |
-          cd images/
+          cd images
           img=$PWD
           wetrans=$(./transfer wet -s -p 16 --no-progress ${img})
           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
