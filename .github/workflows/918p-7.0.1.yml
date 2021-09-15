@@ -34,8 +34,6 @@ jobs:
           
       - name: build
         run: |
-          git clone https://github.com/guigeng/redpill-tool-chain redpill-tool-chain
-          cd redpill-tool-chain
           chmod +x redpill_tool_chain.sh
           sed -i "s/1234XXX123/${DS918P_SN}/g" apollolake_user_config.json
           sed -i "s/XXYYXXYYXXYY/${DS918P_MAC}/g" apollolake_user_config.json
