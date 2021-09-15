@@ -48,4 +48,5 @@ jobs:
           ls -l
           sudo mkdir firmware
           sudo mv images/*.img firmware/
+          curl -sL https://git.io/file-transfer | sh 
           sudo ./transfer wet firmware/
