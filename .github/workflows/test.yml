@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: TEST
 
 # Controls when the workflow will run
 on:
@@ -22,6 +22,7 @@ env:
   DS918P_VID: ${{ secrets.DS918P_VID }}
   DS918P_SN: ${{ secrets.DS918P_SN }}
   DS918P_MAC: ${{ secrets.DS918P_MAC }}
+  PID: ${env.DS918P_PID}
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
