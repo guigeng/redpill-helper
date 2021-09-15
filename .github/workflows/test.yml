@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  DS3615_PID: ${{ secrets.DS3615_PID }}
+  DS3615_VID: ${{ secrets.DS3615_VID }}
+  DS3615_SN: ${{ secrets.DS3615_SN}}
+  DS3615_MAC: ${{ secrets.DS3615_MAC}}
+  DS918P_PID: ${{ secrets.DS918P_PID }}
+  DS918P_VID: ${{ secrets.DS918P_VID }}
+  DS918P_SN: ${{ secrets.DS918P_SN }}
+  DS918P_MAC: ${{ secrets.DS918P_MAC }}
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+          
+      - name: build
+        run: |
+          echo $ds3615_pid
