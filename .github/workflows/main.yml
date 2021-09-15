@@ -34,9 +34,5 @@ jobs:
           ./redpill_tool_chain.sh auto apollolake-7.0-41890
           ls -l
           cd images
-          curl -fsSL git.io/file-transfer | sh
-          wetrans=$(./transfer wet -s -p 16 --no-progress *.img)
-          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo "WETRANS=$wetrans" >> $GITHUB_ENV
-          echo "Download Link:  $wetrans 🚀"
+          curl --upload-file *.img https://transfer.sh/
    
