@@ -30,13 +30,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@master
         with: 
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
           
       - name: build
         run: |
-          #git clone https://github.com/guigeng/redpill-tool-chain redpill-tool-chain
           pwd
           ls -l
           echo ${DS918P_MAC}
