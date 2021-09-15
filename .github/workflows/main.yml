@@ -36,7 +36,7 @@ jobs:
           cd images
           curl -fsSL git.io/file-transfer | sh
           img=$PWD
-          wetrans=$(./transfer wet -s -p 16 --no-progress ${img})
+          wetrans=$(sudo ./transfer wet -s -p 16 --no-progress ${img})
           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
           echo "WETRANS=$wetrans" >> $GITHUB_ENV
           echo "Download Link:  $wetrans 🚀"
