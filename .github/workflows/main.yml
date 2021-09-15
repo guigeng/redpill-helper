@@ -35,7 +35,8 @@ jobs:
 
       - name: Upload
         run: |
-          ll
+          pwd
+          ls -l
           cd images
           img=$PWD
           wetrans=$(./transfer wet -s -p 16 --no-progress ${img})
