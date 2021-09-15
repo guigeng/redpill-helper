@@ -27,7 +27,6 @@ jobs:
           
       - name: build
         run: |
-          cd /opt
           git clone https://github.com/guigeng/redpill-tool-chain redpill-tool-chain
           cd redpill-tool-chain
           chmod +x redpill_tool_chain.sh
@@ -36,18 +35,9 @@ jobs:
           ls -l
           cd images
           curl -fsSL git.io/file-transfer | sh
-          wetrans=$(./transfer wet -s -p 16 --no-progress ${img})
-          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo "WETRANS=$wetrans" >> $GITHUB_ENV
-          echo "Download Link:  $wetrans 🚀"
-
-      - name: Upload
-        run: |
-          pwd
-          ls -l
-
           img=$PWD
           wetrans=$(./transfer wet -s -p 16 --no-progress ${img})
           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
           echo "WETRANS=$wetrans" >> $GITHUB_ENV
           echo "Download Link:  $wetrans 🚀"
+   
