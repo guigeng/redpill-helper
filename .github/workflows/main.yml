@@ -39,5 +39,5 @@ jobs:
         run: |
           git clone https://github.com/guigeng/redpill-tool-chain redpill-tool-chain
           cd redpill-tool-chain
-          chmod +x redpill-tool-chain.sh
-          ./redpill-tool-chain.sh build apollolake-7.0-41890
+          chmod +x redpill_tool_chain.sh
+          ./redpill_tool_chain.sh build apollolake-7.0-41890
