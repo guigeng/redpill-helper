@@ -13,6 +13,18 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  DS3615_PID: ${{ secrets.DS3615_PID }}
+  DS3615_VID: ${{ secrets.DS3615_VID }}
+  DS3615_SN: ${{ secrets.DS3615_SN}}
+  DS3615_MAC: ${{ secrets.DS3615_MAC}}
+  DS918P_PID: ${{ secrets.DS918P_PID }}
+  DS918P_VID: ${{ secrets.DS918P_VID }}
+  DS918P_SN: ${{ secrets.DS918P_SN }}
+  DS918P_MAC: ${{ secrets.DS918P_MAC }}
+  MODEL: ${{ secrets.MODEL }}
+  VERSION: ${{ secrets.VERSION }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -30,9 +42,38 @@ jobs:
           git clone https://github.com/guigeng/redpill-tool-chain redpill-tool-chain
           cd redpill-tool-chain
           chmod +x redpill_tool_chain.sh
-          ./redpill_tool_chain.sh build apollolake-7.0-41890
-          ./redpill_tool_chain.sh auto apollolake-7.0-41890
+          MODEL_CHIP="apollolake"
+          MODEL_VER="7.0-41222"
+          IMG="${MODEL_CHIP}-${MODEL_VER}"
+          case $MODEL in 
+            DS3615)
+              $MODEL_CHIP=bromolow
+              ;;
+            DS918)
+              $MODEL_CHIP=apollolake
+              ;;
+            *)
+              exit 1
+              ;;
+          esac
+
+          case $VERSION in
+            6.2.4)
+              $MODEL_VER="6.2.4-25556"
+              ;;
+            7.0)
+              $MODEL_VER="7.0-41222"
+              ;;
+            7.0.1)
+              $MODEL_VER="7.0.1-42214"
+              ;;
+            *)
+              exit 1
+              ;;
+          esac
+          ./redpill_tool_chain.sh build $IMG
+          ./redpill_tool_chain.sh auto $IMG
           ls -l
           cd images
           curl --upload-file *.img https://transfer.sh/
-   
+
