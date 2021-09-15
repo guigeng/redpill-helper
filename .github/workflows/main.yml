@@ -27,19 +27,4 @@ jobs:
           
       - name: build
         run: |
-          git clone https://github.com/guigeng/redpill-tool-chain redpill-tool-chain
-          cd redpill-tool-chain
-          chmod +x redpill_tool_chain.sh
-          ./redpill_tool_chain.sh build apollolake-7.0-41890
-          ./redpill_tool_chain.sh auto apollolake-7.0-41890
-
-      - name: Upload
-        run: |
-          pwd
-          ls -l
-          cd /opt/redpill-load/images/
-          img=$PWD
-          wetrans=$(./transfer wet -s -p 16 --no-progress ${img})
-          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo "WETRANS=$wetrans" >> $GITHUB_ENV
-          echo "Download Link:  $wetrans 🚀"
+          who
