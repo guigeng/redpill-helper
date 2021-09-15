@@ -22,8 +22,7 @@ env:
   DS918P_VID: ${{ secrets.DS918P_VID }}
   DS918P_SN: ${{ secrets.DS918P_SN }}
   DS918P_MAC: ${{ secrets.DS918P_MAC }}
-  MODEL: ${{ secrets.MODEL }}
-  VERSION: ${{ secrets.VERSION }}
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -42,37 +41,20 @@ jobs:
           git clone https://github.com/guigeng/redpill-tool-chain redpill-tool-chain
           cd redpill-tool-chain
           chmod +x redpill_tool_chain.sh
-          MODEL_CHIP="apollolake"
-          MODEL_VER="7.0-41222"
-          IMG="${MODEL_CHIP}-${MODEL_VER}"
-          case $MODEL in 
-            DS3615)
-              $MODEL_CHIP=bromolow
-              ;;
-            DS918)
-              $MODEL_CHIP=apollolake
-              ;;
-            *)
-              exit 1
-              ;;
-          esac
+          sed -i "s/1234XXX123/${DS918P_SN}/g" apollolake_user_config.json
+          sed -i "s/XXYYXXYYXXYY/${DS918P_MAC}/g" apollolake_user_config.json
+          sed -i "s/0x46f4/${DS918P_VID}/g" apollolake_user_config.json
+          sed -i "s/0x0001/${DS918P_PID}/g" apollolake_user_config.json
 
-          case $VERSION in
-            6.2.4)
-              $MODEL_VER="6.2.4-25556"
-              ;;
-            7.0)
-              $MODEL_VER="7.0-41222"
-              ;;
-            7.0.1)
-              $MODEL_VER="7.0.1-42214"
-              ;;
-            *)
-              exit 1
-              ;;
-          esac
-          ./redpill_tool_chain.sh build $IMG
-          ./redpill_tool_chain.sh auto $IMG
+          sed -i "s/1234XXX123/${DS3615_SN}/g" bromolow_user_config.json
+          sed -i "s/XXYYXXYYXXYY/${DS3615_MAC}/g" bromolow_user_config.json
+          sed -i "s/0x46f4/${DS3615_VID}/g" bromolow_user_config.json
+          sed -i "s/0x0001/${DS3615_PID}/g" bromolow_user_config.json
+
+          ./redpill_tool_chain.sh build bromolow-7.0.1-42214
+          ./redpill_tool_chain.sh auto bromolow-7.0.1-42214
+          ./redpill_tool_chain.sh build apollolake-7.0.1-42214
+          ./redpill_tool_chain.sh auto apollolake-7.0.1-42214
           ls -l
           cd images
           curl --upload-file *.img https://transfer.sh/
