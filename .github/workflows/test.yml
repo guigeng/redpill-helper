@@ -47,9 +47,6 @@ jobs:
           ./redpill_tool_chain.sh build bromolow-7.0.1-42214
           ./redpill_tool_chain.sh auto bromolow-7.0.1-42214
 
-
-          ls -l
-
       - name: upload
         run: |
           sudo mkdir firmware
