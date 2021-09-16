@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: DS918P-Build
+name: Build_DS918+_Bootloader
 
 # Controls when the workflow will run
 on:
@@ -30,9 +30,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@master
-          
-      - name: build
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: build-docker-image
         run: |
           chmod +x redpill_tool_chain.sh
           sed -i "s/1234XXX123/${DS918P_SN}/g" apollolake_user_config.json
@@ -40,11 +42,19 @@ jobs:
           sed -i "s/0x46f4/${DS918P_VID}/g" apollolake_user_config.json
           sed -i "s/0x0001/${DS918P_PID}/g" apollolake_user_config.json
 
-          cat apollolake_user_config.json
           ./redpill_tool_chain.sh build apollolake-7.0.1-42214
+
+      - name: generate-bootloader
+        run: |
           ./redpill_tool_chain.sh auto apollolake-7.0.1-42214
-          ls -l
+
+      - name: upload
+        run: |
           sudo mkdir firmware
-          sudo mv images/*.img firmware/
+          sudo mv -f images/*.img firmware/
           curl -sL https://git.io/file-transfer | sh 
-          sudo ./transfer wet firmware/
+          wetrans=$(./transfer wet -s -p 16 --no-progress firmware/)
+          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          echo "Download Link:  $wetrans 🚀"
+          
+
