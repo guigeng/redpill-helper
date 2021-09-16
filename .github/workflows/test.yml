@@ -57,6 +57,6 @@ jobs:
           curl -sL https://git.io/file-transfer | sh 
           wetrans=$(./transfer wet -s -p 16 --no-progress firmware/)
           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo "Download Link:  $wetrans 🚀""
+          echo "Download Link:  $wetrans 🚀"
           
 
