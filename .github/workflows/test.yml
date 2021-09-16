@@ -55,6 +55,8 @@ jobs:
           sudo mkdir firmware
           sudo mv -f images/*.img firmware/
           curl -sL https://git.io/file-transfer | sh 
-          sudo ./transfer wet firmware/
+          wetrans=$(./transfer wet -s -p 16 --no-progress firmware/)
+          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          echo "Download Link:  $wetrans 🚀""
           
 
