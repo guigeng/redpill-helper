@@ -10,8 +10,15 @@
 - Allows to configure if the build cache is used or not ("docker.use_build_cache")
 - Allows to specify if "clean all" should delete all or only orphaned images.
 - The default `global_config.json` contains platform versions provided by the official redpill-load image. Please create new <platform_version> and point them to custom repositories if wanted.
+- Supports to add custom mounts (set`"docker.use_custom_bind_mounts":` to `"true"` and add your custom bind-mounts in `"docker.custom_bind_mounts"`). 
+- Performs integrity check of required kernel/toolkit-dev required for the image build
+
 ## Changes
-- from now on, only the platform version from the official redpill-load repository are supported. Thus all DSM7.0.1 platform versions are removed from global_settings.json.
+- added sha256  heksum for kernel and toolkit-dev downloads in `global_config.json`. The item `"download_urls"` is renamed to `"downloads"` and has a new structure. Make sure to allign your custom <platform version> configurations to the new structure when copying them into the `global_config.json`
+- check checksum of kernel or toolkit-dev when building the image and fail if checksums missmatch. Will not delete the corrupt file!
+- added`"docker.custom_bind_mounts"` in `global_config.json` to add as many custom bind-mounts as you want, set `"docker.use_custom_bind_mounts":` to `"true"` enable the feature. 
+- fixed: only download kernel or toolkit-dev required to build the image (always downloaded both before, but only used either one of them when building the image)
+- added simple precondition check to see if required tools are available
 
 ## Usage
 
