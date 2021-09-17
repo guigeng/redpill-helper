@@ -28,7 +28,7 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build_images:
+  build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -57,16 +57,14 @@ jobs:
 
       - name: make apollolake 7.0.1 img
         run: |
-          ./redpill_tool_chain.sh run apollolake-7.0.1-42214
-          make build_all
+          ./redpill_tool_chain.sh auto apollolake-7.0.1-42214
 
       - name: build bromolow-7.0.1
         run: ./redpill_tool_chain.sh build bromolow-7.0.1-42214
 
       - name: make bromolow 7.0.1 img
         run: |
-          ./redpill_tool_chain.sh run bromolow-7.0.1-42214
-          make build_all
+          ./redpill_tool_chain.sh auto bromolow-7.0.1-42214
 
       - name: upload images to Wetrans
         run: |
