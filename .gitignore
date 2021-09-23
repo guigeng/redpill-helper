@@ -1,2 +1,3 @@
 *.txz
+.DS_Store
 user_config.json
