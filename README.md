@@ -1,3 +1,33 @@
+# 使用方法
+- 需要创建几个secrets
+```
+###ds918+的相关数据，默认是虚拟化磁盘启动，sn和mac随机生成的，可以在secrets里面修改成自己的
+  DS918P_PID: ${{ secrets.DS918P_PID }}
+  DS918P_VID: ${{ secrets.DS918P_VID }}
+  DS918P_SN: ${{ secrets.DS918P_SN }}
+  DS918P_MAC: ${{ secrets.DS918P_MAC }}
+
+###ds3615的相关数据，默认是虚拟化磁盘启动，sn和mac随机生成的，可以在screts里面修改成自己的
+  DS3615_PID: ${{ secrets.DS3615_PID }}
+  DS3615_VID: ${{ secrets.DS3615_VID }}
+  DS3615_SN: ${{ secrets.DS3615_SN}}
+  DS3615_MAC: ${{ secrets.DS3615_MAC}}
+
+###下面2行是wxpusher的推送服务，编译好的img文件下载地址推送到微信，一个token，一个uid
+###上传到weTransfer上。
+  WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN}}
+  WXPUSER_UID: ${{ secrets.WXPUSER_UID }}
+```
+
+# 所有内容均从[xpenology](https://xpenology.com/forum/topic/45795-redpill-the-new-loader-for-624-discussion/)论坛获取，感谢：
+@ThorGroup
+@haydibe
+@jumkey
+等一些大佬
+
+# 以下内容为原工具的README文件
+---
+
 # Inofficial redpill toolchain image builder
 - Creates a OCI Container (~= Docker) image based tool chain.
 - Takes care of downloading (and caching) the required sources to compile redpill.ko and the required os packages that the build process depends on.
