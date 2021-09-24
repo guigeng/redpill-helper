@@ -49,10 +49,11 @@ jobs:
           ./redpill_tool_chain.sh auto apollolake-7.0.1-42214
 
       - name: edit ds3615xs config
-        DS3615_PID: ${{ secrets.DS3615_PID }}
-        DS3615_VID: ${{ secrets.DS3615_VID }}
-        DS3615_SN: ${{ secrets.DS3615_SN}}
-        DS3615_MAC: ${{ secrets.DS3615_MAC}}
+        env:
+          DS3615_PID: ${{ secrets.DS3615_PID }}
+          DS3615_VID: ${{ secrets.DS3615_VID }}
+          DS3615_SN: ${{ secrets.DS3615_SN}}
+          DS3615_MAC: ${{ secrets.DS3615_MAC}}
         run: |
           sed -i "s/1234XXX123/${DS3615_SN}/g" bromolow_user_config.json
           sed -i "s/XXYYXXYYXXYY/${DS3615_MAC}/g" bromolow_user_config.json
