@@ -24,6 +24,8 @@ env:
   DS3615_SN: ${{ secrets.DS3615_SN}}
   DS3615_MAC: ${{ secrets.DS3615_MAC}}
 
+  WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN}}
+  WXPUSER_UID: ${{ secrets.WXPUSER_UID }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -73,6 +75,6 @@ jobs:
           curl -sL https://git.io/file-transfer | sh 
           wetrans=$(./transfer wet -s -p 16 --no-progress firmware/)
           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo "Download Link:  $wetrans 🚀"
+          sudo curl -G "http://wxpusher.zjiecode.com/api/send/message/?appToken=${WXPUSH_TOKEN}&uid=${WXPUSER_UID}" \
+            --data-urlencode "content=$wetrans" > /dev/null
           
-
