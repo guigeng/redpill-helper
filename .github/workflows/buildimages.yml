@@ -42,11 +42,12 @@ jobs:
           sed -i "s/0x0001/${DS918P_PID}/g" apollolake_user_config.json
 
       - name: build ds918 7.0.1
-        run: ./redpill_tool_chain.sh build apollolake-7.0.1-42214
+        run: |
+          ./redpill_tool_chain.sh build apollolake-7.0.1-42218
 
       - name: create ds918 7.0.1 image
         run: |
-          ./redpill_tool_chain.sh auto apollolake-7.0.1-42214
+          ./redpill_tool_chain.sh auto apollolake-7.0.1-42218
 
       - name: edit ds3615xs config
         env:
@@ -61,11 +62,12 @@ jobs:
           sed -i "s/0x0001/${DS3615_PID}/g" bromolow_user_config.json
 
       - name: build ds3615xs 7.0.1
-        run: ./redpill_tool_chain.sh build bromolow-7.0.1-42214
+        run: |
+          ./redpill_tool_chain.sh build bromolow-7.0.1-42218
 
       - name: create ds3615xs 7.0.1 image
         run: |
-          ./redpill_tool_chain.sh auto bromolow-7.0.1-42214
+          ./redpill_tool_chain.sh auto bromolow-7.0.1-42218
 
       - name: upload images to Wetrans
         env: 
