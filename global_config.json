@@ -70,8 +70,8 @@
             }
         },
         {
-            "id": "bromolow-7.0.1-42214",
-            "platform_version": "bromolow-7.0.1-42214",
+            "id": "bromolow-7.0.1-42218",
+            "platform_version": "bromolow-7.0.1-42218",
             "user_config_json": "bromolow_user_config.json",
             "docker_base_image": "debian:8-slim",
             "compile_with": "toolkit_dev",
@@ -148,8 +148,8 @@
             }
         },
         {
-            "id": "apollolake-7.0.1-42214",
-            "platform_version": "apollolake-7.0.1-42214",
+            "id": "apollolake-7.0.1-42218",
+            "platform_version": "apollolake-7.0.1-42218",
             "user_config_json": "apollolake_user_config.json",
             "docker_base_image": "debian:10-slim",
             "compile_with": "toolkit_dev",
