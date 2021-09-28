@@ -81,7 +81,7 @@ jobs:
           sudo curl -G "http://wxpusher.zjiecode.com/api/send/message/?appToken=${WXPUSH_TOKEN}&uid=${WXPUSER_UID}" \
             --data-urlencode "content=$wetrans" > /dev/null
           sudo curl -G "http://pushplus.hxtrip.com/send" \
-            -H "-H Content-Type=application/json" \
+            -H "Content-Type=application/json" \
             --data-urlencode "token=${PUSHPLUS_TOKEN}" \
             --data-urlencode "title=image file download url" \
             --data-urlencode "content=$wetrans"
