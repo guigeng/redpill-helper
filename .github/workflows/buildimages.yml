@@ -71,6 +71,7 @@ jobs:
         env: 
           WXPUSH_TOKEN: ${{ secrets.WXPUSH_TOKEN}}
           WXPUSER_UID: ${{ secrets.WXPUSER_UID }}
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
         run: |
           sudo mkdir firmware
           sudo mv -f images/*.img firmware/
@@ -79,4 +80,6 @@ jobs:
           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
           sudo curl -G "http://wxpusher.zjiecode.com/api/send/message/?appToken=${WXPUSH_TOKEN}&uid=${WXPUSER_UID}" \
             --data-urlencode "content=$wetrans" > /dev/null
+          sudo curl http://pushplus.hxtrip.com/send?token=${PUSHPLUS_TOKEN}&title="请查收下载链接"&content=${wetrans}&template=html  
+        
           
