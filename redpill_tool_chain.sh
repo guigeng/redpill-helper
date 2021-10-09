@@ -76,6 +76,10 @@ function runContainer(){
         echo "user config does not exist: ${USER_CONFIG_JSON}"
         exit 1
     fi
+    if [[ "${LOCAL_RP_LKM_USE}" == "true" && ! -e $(realpath "${LOCAL_RP_LKM_PATH}") ]]; then
+        echo "Local redpill-lkm path does not exist: ${LOCAL_RP_LKM_PATH}"
+        exit 1
+    fi
     if [[ "${LOCAL_RP_LOAD_USE}" == "true" && ! -e $(realpath "${LOCAL_RP_LOAD_PATH}") ]]; then
         echo "Local redpill-load path does not exist: ${LOCAL_RP_LOAD_PATH}"
         exit 1
@@ -98,6 +102,7 @@ function runContainer(){
         --volume /dev:/dev \
         $( [ "${USE_CUSTOM_BIND_MOUNTS}" == "true" ] && echo "${BINDS}") \
         $( [ "${LOCAL_RP_LOAD_USE}" == "true" ] && echo "--volume $(realpath ${LOCAL_RP_LOAD_PATH}):/opt/redpill-load") \
+        $( [ "${LOCAL_RP_LKM_USE}" == "true" ] && echo "--volume $(realpath ${LOCAL_RP_LKM_PATH}):/opt/redpill-lkm") \
         $( [ -e "${USER_CONFIG_JSON}" ] && echo "--volume $(realpath ${USER_CONFIG_JSON}):/opt/redpill-load/user_config.json") \
         --volume ${REDPILL_LOAD_CACHE}:/opt/redpill-load/cache \
         --volume ${REDPILL_LOAD_IMAGES}:/opt/redpill-load/images \
@@ -106,6 +111,7 @@ function runContainer(){
         --env TARGET_VERSION="${TARGET_VERSION}" \
         --env DSM_VERSION="${DSM_VERSION}" \
         --env REVISION="${TARGET_REVISION}" \
+        --env LOCAL_RP_LKM_USE="${LOCAL_RP_LKM_USE}" \
         --env LOCAL_RP_LOAD_USE="${LOCAL_RP_LOAD_USE}" \
         ${DOCKER_IMAGE_NAME}:${TARGET_PLATFORM}-${TARGET_VERSION}-${TARGET_REVISION} $( [ "${CMD}" == "run" ] && echo "/bin/bash")
 }
@@ -200,6 +206,8 @@ if [ "${ID}" != "all"  ]; then
     USE_BUILDKIT=$(getValueByJsonPath ".docker.use_buildkit" "${CONFIG}")
     DOCKER_IMAGE_NAME=$(getValueByJsonPath ".docker.image_name" "${CONFIG}")
     DOWNLOAD_FOLDER=$(getValueByJsonPath ".docker.download_folder" "${CONFIG}")
+    LOCAL_RP_LKM_USE=$(getValueByJsonPath ".docker.local_rp_lkm_use" "${CONFIG}")
+    LOCAL_RP_LKM_PATH=$(getValueByJsonPath ".docker.local_rp_lkm_path" "${CONFIG}")
     LOCAL_RP_LOAD_USE=$(getValueByJsonPath ".docker.local_rp_load_use" "${CONFIG}")
     LOCAL_RP_LOAD_PATH=$(getValueByJsonPath ".docker.local_rp_load_path" "${CONFIG}")
     TARGET_PLATFORM=$(getValueByJsonPath ".platform_version | split(\"-\")[0]" "${BUILD_CONFIG}")
