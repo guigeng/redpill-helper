@@ -43,11 +43,11 @@ jobs:
 
       - name: build ds918 7.0.1
         run: |
-          ./redpill_tool_chain.sh build apollolake-7.0.1-42218
+          ./redpill_tool_chain.sh build apollolake-7.0-41890
 
       - name: create ds918 7.0.1 image
         run: |
-          ./redpill_tool_chain.sh auto apollolake-7.0.1-42218
+          ./redpill_tool_chain.sh auto apollolake-7.0-41890
 
       - name: edit ds3615xs config
         env:
