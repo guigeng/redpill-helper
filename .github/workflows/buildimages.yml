@@ -35,7 +35,7 @@ jobs:
           DS918P_SN: ${{ secrets.DS918P_SN }}
           DS918P_MAC: ${{ secrets.DS918P_MAC }}
         run: |
-          chmod +x redpill-helper.sh
+          chmod +x rp-helper.sh
           sed -i "s/1234XXX123/${DS918P_SN}/g" apollolake_user_config.json
           sed -i "s/XXYYXXYYXXYY/${DS918P_MAC}/g" apollolake_user_config.json
           sed -i "s/0x46f4/${DS918P_VID}/g" apollolake_user_config.json
@@ -43,11 +43,11 @@ jobs:
 
       - name: build ds918 7.0.1
         run: |
-          ./redpill-helper.sh build apollolake-7.0.1-42218
+          ./rp-helper.sh build apollolake-7.0.1-42218
 
       - name: create ds918 7.0.1 image
         run: |
-          ./redpill-helper.sh auto apollolake-7.0.1-42218
+          ./rp-helper.sh auto apollolake-7.0.1-42218
 
       - name: edit ds3615xs config
         env:
@@ -63,11 +63,11 @@ jobs:
 
       - name: build ds3615xs 7.0.1
         run: |
-          ./redpill-helper.sh build bromolow-7.0.1-42218
+          ./rp-helper.sh build bromolow-7.0.1-42218
           
       - name: create ds3615xs 7.0.1 image
         run: |
-          ./redpill-helper.sh auto bromolow-7.0.1-42218
+          ./rp-helper.sh auto bromolow-7.0.1-42218
 
       - name: upload images to Wetrans
         env: 
