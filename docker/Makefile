@@ -24,6 +24,7 @@ build_redpill_lkm:
 	echo "#############################################" && \
 	modinfo $(REDPILL_LKM_SRC)/redpill.ko
 
+
 .PHONY: build_redpill_load
 build_redpill_load:
 	@mkdir -p $(REDPILL_LOAD_SRC)/ext/rp-lkm/
@@ -40,6 +41,7 @@ build_redpill_load:
 		pushd $(REDPILL_LOAD_SRC) && \
 		./build-loader.sh 'DS918+' '$(TARGET_VERSION)-$(TARGET_REVISION)'; \
 	fi
+
 
 .PHONY: build_all
 build_all: build_redpill_lkm build_redpill_load
