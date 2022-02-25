@@ -41,13 +41,13 @@ jobs:
           sed -i "s/0x46f4/${DS918P_VID}/g" apollolake_user_config.json
           sed -i "s/0x0001/${DS918P_PID}/g" apollolake_user_config.json
           
-      - name: add VirtIO Driver
-        run: |
-          ./rp-helper.sh ext apollolake-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
-
       - name: build ds918 7.0.1
         run: |
           ./rp-helper.sh build apollolake-7.0.1-42218
+          
+      - name: add VirtIO Driver
+        run: |
+          ./rp-helper.sh ext apollolake-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
 
       - name: create ds918 7.0.1 image
         run: |
@@ -65,15 +65,14 @@ jobs:
           sed -i "s/0x46f4/${DS3615_VID}/g" bromolow_user_config.json
           sed -i "s/0x0001/${DS3615_PID}/g" bromolow_user_config.json
 
-      - name: add VirtIO Driver
-        run: |
-          ./rp-helper.sh ext bromolow-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
-
-
       - name: build ds3615xs 7.0.1
         run: |
           ./rp-helper.sh build bromolow-7.0.1-42218
           
+      - name: add VirtIO Driver
+        run: |
+          ./rp-helper.sh ext bromolow-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
+
       - name: create ds3615xs 7.0.1 image
         run: |
           ./rp-helper.sh auto bromolow-7.0.1-42218
