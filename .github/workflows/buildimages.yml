@@ -43,7 +43,7 @@ jobs:
           
       - name: add VirtIO Driver
         run: |
-          ./re-helper.sh ext apollolake-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
+          ./rp-helper.sh ext apollolake-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
 
       - name: build ds918 7.0.1
         run: |
@@ -67,7 +67,7 @@ jobs:
 
       - name: add VirtIO Driver
         run: |
-          ./re-helper.sh ext bromolow-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
+          ./rp-helper.sh ext bromolow-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
 
 
       - name: build ds3615xs 7.0.1
