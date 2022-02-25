@@ -40,6 +40,10 @@ jobs:
           sed -i "s/XXYYXXYYXXYY/${DS918P_MAC}/g" apollolake_user_config.json
           sed -i "s/0x46f4/${DS918P_VID}/g" apollolake_user_config.json
           sed -i "s/0x0001/${DS918P_PID}/g" apollolake_user_config.json
+          
+      - name: add VirtIO Driver
+        run: |
+          ./re-helper.sh ext apollolake-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
 
       - name: build ds918 7.0.1
         run: |
@@ -60,6 +64,11 @@ jobs:
           sed -i "s/XXYYXXYYXXYY/${DS3615_MAC}/g" bromolow_user_config.json
           sed -i "s/0x46f4/${DS3615_VID}/g" bromolow_user_config.json
           sed -i "s/0x0001/${DS3615_PID}/g" bromolow_user_config.json
+
+      - name: add VirtIO Driver
+        run: |
+          ./re-helper.sh ext bromolow-7.0.1-42218 add https://raw.githubusercontent.com/RedPill-TTG/redpill-virtio/master/rpext-index.json
+
 
       - name: build ds3615xs 7.0.1
         run: |
