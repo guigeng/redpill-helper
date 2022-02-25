@@ -48,6 +48,7 @@ jobs:
       - name: add VirtIO Driver
         run: |
           ./rp-helper.sh ext apollolake-7.0.1-42218 add https://raw.githubusercontent.com/jumkey/redpill-load/develop/redpill-virtio/rpext-index.json
+
       - name: create ds918 7.0.1 image
         run: |
           ./rp-helper.sh auto apollolake-7.0.1-42218
