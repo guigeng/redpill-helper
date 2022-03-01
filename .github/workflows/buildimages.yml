@@ -45,6 +45,7 @@ jobs:
         run: |
           ./rp-helper.sh build apollolake-7.0.1-42218
           ./rp-helper.sh ext apollolake-7.0.1-42218 add https://raw.githubusercontent.com/jimmyGALLAND/redpill-ext/master/virtio/rpext-index.json
+          ./rp-helper.sh ext apollolake-7.0.1-42218 add https://raw.githubusercontent.com/jimmyGALLAND/redpill-ext/master/acpid/rpext-index.json
 
       - name: create ds918 7.0.1 image
         run: |
