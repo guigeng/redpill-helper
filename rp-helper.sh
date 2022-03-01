@@ -107,7 +107,7 @@ function runContainer(){
             BINDS+="--volume $(realpath "${HOST_PATH}"):${CONTAINER_PATH} "
         done
     fi
-    docker run --privileged --rm  $( [ "${CMD}" == "run" ] || [ "${CMD}" == "ext" ] && echo " --interactive") --tty \
+    docker run --privileged --rm  $( [ "${CMD}" == "run" ] || [ "${CMD}" == "ext" ] && echo " --interactive") \
         --name rp-helper \
         --hostname rp-helper \
         --volume /dev:/dev \
